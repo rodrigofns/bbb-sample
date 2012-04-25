@@ -46,6 +46,18 @@ else { ?>
 		</ul>
 		<input type="submit" value="Criar sala"/>
 	</form>
+	<hr/>
+
+	Salas atualmente abertas:<ul>
+	<?php
+	$ret = bbb_wrap_simplexml_load_file(BigBlueButton::getMeetingsURL($url, $salt));
+	if(!count($ret->meetings->meeting))
+		echo '<li><i>(nenhuma)</i></li>';
+	else
+		foreach($ret->meetings->meeting as $meeting)
+			echo '<li>'.$meeting->meetingID.'</li>';
+	?>
+	</ul>
 <? } ?>
 
 </body>
