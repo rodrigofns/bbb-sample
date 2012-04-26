@@ -20,8 +20,7 @@ if(isset($_POST['criador'])) { // criação de nova sala
 		die("Já existe uma sala chamada \"{$ret->meetingID}\", escolha outro nome.");
 
 	$urlmod = BigBlueButton::joinURL($_POST['sala'], $_POST['criador'], 'serpromod', $salt, $url);
-	echo "<p><a target=\"_blank\" href=\"$urlmod\">Sua URL para entrar na sala.</a></p>";
-	echo 'URLs dos convidados:<ul>';
+	echo 'URLs dos convidados (copie os links e envie a cada um deles):<ul>';
 	for($i = 1; $i <= 8; ++$i) {
 		$conv = $_POST["convidado_$i"];
 		if(!strlen($conv)) continue;
@@ -31,6 +30,7 @@ if(isset($_POST['criador'])) { // criação de nova sala
 		echo "<li><a target=\"_blank\" href=\"$urlconv\">URL de $conv</a></li>";
 	}
 	echo '</ul>';
+	echo "<p><a target=\"_blank\" href=\"$urlmod\">Sua URL para entrar na sala</a> (clique para entrar)</p>";
 }
 else { ?>
 	<!-- primeira exibição da página -->
